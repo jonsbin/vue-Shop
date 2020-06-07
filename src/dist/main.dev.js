@@ -26,7 +26,16 @@ var Less = require('Less');
 _vue["default"].use(Less);
 
 //配置请求的跟路径
-_axios["default"].defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/';
+_axios["default"].defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'; //通过axios请求拦截器添加token，保证有效获取数据的权限。
+//axios请求拦截
+
+_axios["default"].interceptors.request.use(function (config) {
+  //为请求头对象添加token验证的Authorization
+  config.headers.Authorization = window.sessionStorage.getItem('token'); //必须返回config
+
+  return config;
+});
+
 _vue["default"].prototype.$http = _axios["default"];
 _vue["default"].config.productionTip = false;
 /* eslint-disable no-new */

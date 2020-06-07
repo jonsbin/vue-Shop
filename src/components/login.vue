@@ -39,8 +39,8 @@ export default {
       msg: '',
       //这是登录表单的数据
       login_from:{
-        username:'',
-        password:''
+        username:'admin',
+        password:'123456'
       },
       //表单验证规则
       loginFromRules:{
@@ -63,11 +63,11 @@ export default {
       this.$refs.loginFormRef.validate(async valid=>{
         //表单点击登录验证valid返回ture和flase
         if(!valid) return;
-        const result = await this.$http.post("login",this.login_from);
-        if(result.data.status!=200) return this.$message.error('登录失败')
+        const {data:res} = await this.$http.post("login",this.login_from);
+        if(res.meta.status!=200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
         //1、将登录成功之后的token保存到客户端的sessionStorage
-        window.sessionStorage.setItem("token",result.data.token);
+        window.sessionStorage.setItem("token",res.data.token);
         this.$router.push('/home')
       })
     }
