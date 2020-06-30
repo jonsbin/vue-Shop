@@ -17,6 +17,10 @@ var _welcome = _interopRequireDefault(require("@/components/welcome.vue"));
 
 var _Users = _interopRequireDefault(require("@/components/user/Users.vue"));
 
+var _rights = _interopRequireDefault(require("@/components/pwer/rights.vue"));
+
+var _roles = _interopRequireDefault(require("@/components/pwer/roles.vue"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _vue["default"].use(_vueRouter["default"]);
@@ -40,6 +44,12 @@ var router = new _vueRouter["default"]({
     }, {
       path: '/users',
       component: _Users["default"]
+    }, {
+      path: '/rights',
+      component: _rights["default"]
+    }, {
+      path: '/roles',
+      component: _roles["default"]
     }]
   }]
 }); //挂载路由导航守卫
